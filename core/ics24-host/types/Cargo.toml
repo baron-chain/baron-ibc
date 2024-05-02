@@ -1,0 +1,64 @@
+[package]
+name         = "core-host-types"
+version      = { workspace = true }
+authors      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+repository   = { workspace = true }
+keywords     = [ "blockchain", "cosmos", "ibc", "host", "types" ]
+readme       = "./../../README.md"
+
+description = """
+    Maintained by `rs`, encapsulates essential ICS-24 Host Requirements data structures and domain types,
+    as specified in the Inter-Blockchain Communication (IBC) protocol. Designed for universal applicability
+    to facilitate development and integration across diverse enabled projects.
+"""
+
+[package.metadata.docs.rs]
+all-features = true
+
+[dependencies]
+# external dependencies
+borsh       = { workspace = true, optional = true }
+derive_more = { workspace = true }
+displaydoc  = { workspace = true }
+schemars    = { workspace = true, optional = true }
+serde       = { workspace = true, optional = true }
+
+# ibc dependencies
+primitives = { workspace = true }
+
+# parity dependencies
+parity-scale-codec = { workspace = true, optional = true }
+scale-info         = { workspace = true, optional = true }
+
+[dev-dependencies]
+rstest     = { workspace = true }
+serde_json = { workspace = true }
+
+[features]
+default = [ "std" ]
+std = [
+  "displaydoc/std",
+  "primitives/std",
+]
+serde = [
+  "dep:serde",
+  "primitives/serde",
+]
+schema = [
+  "dep:schemars",
+  "primitives/schema",
+  "serde",
+  "std",
+]
+borsh = [
+  "dep:borsh",
+  "primitives/borsh",
+]
+parity-scale-codec = [
+  "dep:parity-scale-codec",
+  "dep:scale-info",
+  "primitives/parity-scale-codec",
+]

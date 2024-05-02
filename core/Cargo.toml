@@ -1,0 +1,84 @@
+[package]
+name         = "core"
+version      = { workspace = true }
+authors      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+repository   = { workspace = true }
+keywords     = [ "blockchain", "cosmos", "ibc", "core" ]
+readme       = "README.md"
+
+description = """
+    Maintained by `rs`, re-exports a comprehensive set of libraries that implement IBC core (TAO)
+    modules, facilitating seamless integration of IBC core business logic into any blockchain system.
+"""
+
+[package.metadata.docs.rs]
+all-features = true
+
+[dependencies]
+core-client           = { workspace = true }
+core-connection       = { workspace = true }
+core-channel          = { workspace = true }
+core-commitment-types = { workspace = true }
+core-host             = { workspace = true }
+core-router           = { workspace = true }
+core-handler          = { workspace = true }
+derive                = { workspace = true }
+primitives            = { workspace = true }
+
+[features]
+default = [ "std" ]
+std = [
+  "core-client/std",
+  "core-connection/std",
+  "core-channel/std",
+  "core-commitment-types/std",
+  "core-host/std",
+  "core-router/std",
+  "core-handler/std",
+  "primitives/std",
+]
+serde = [
+  "core-client/serde",
+  "core-connection/serde",
+  "core-channel/serde",
+  "core-commitment-types/serde",
+  "core-host/serde",
+  "core-router/serde",
+  "core-handler/serde",
+  "primitives/serde",
+]
+borsh = [
+  "core-client/borsh",
+  "core-connection/borsh",
+  "core-channel/borsh",
+  "core-commitment-types/borsh",
+  "core-host/borsh",
+  "core-router/borsh",
+  "core-handler/borsh",
+  "primitives/borsh",
+]
+schema = [
+  "core-client/schema",
+  "core-connection/schema",
+  "core-channel/schema",
+  "core-commitment-types/schema",
+  "core-host/schema",
+  "core-router/schema",
+  "core-handler/schema",
+  "primitives/schema",
+  "serde",
+  "std",
+]
+parity-scale-codec = [
+  "core-client/parity-scale-codec",
+  "core-connection/parity-scale-codec",
+  "core-channel/parity-scale-codec",
+  "core-commitment-types/parity-scale-codec",
+  "core-host/parity-scale-codec",
+  "core-router/parity-scale-codec",
+  "core-handler/parity-scale-codec",
+  "primitives/parity-scale-codec",
+]
